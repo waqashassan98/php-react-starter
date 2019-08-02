@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import { render } from 'react-dom';
-import { asyncComponent } from 'react-async-component';
 
-/** We are importing our index.php my app Vairaible */
+
+import React, {Component, Fragment} from 'react';
+import ReactDOM from 'react-dom';
+import { asyncComponent } from 'react-async-component';
+import Button from '@material-ui/core/Button';
+
+// /** We are importing our index.php my app Vairaible */
 import myApp from 'myApp';
 
 /* globals __webpack_public_path__ */
@@ -17,26 +20,29 @@ const Header = asyncComponent({
     )
 });
 
-class Myapp extends Component {
-    render() {
-
+class App extends Component{
+    render(){
         const { user : { name, email }, logged } = myApp;
-
         return (
             <Fragment>
-                <Header/>
-                <div className="dashboard">
+                <Button variant="contained" color="primary">
+                    Hello World
+                </Button>
+                <Header></Header>
+                    <div className="dashboard">
                     {logged &&
                         <h2 className="status">Logged In</h2>
                     }
                     <h1 className="name"> {name}</h1>
                     <p className="email">{email}</p>
-
-                    <p>API host variable {__API_HOST__}</p>
-                </div>
+                    
+    
+                    </div>
             </Fragment>
-        )
+        );
     }
 }
 
-render(<Myapp/>, document.getElementById('app'));
+
+
+ReactDOM.render(<App />, document.querySelector('#app'));
